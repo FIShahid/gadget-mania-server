@@ -58,6 +58,13 @@ async function run(){
         const result = await productCollection.updateOne(filter, updatedDoc, options);
         res.send(result);
     })
+
+     // POST
+     app.post('/inventory', async(req, res) =>{
+        const newProduct = req.body;
+        const result = await productCollection.insertOne(newProduct);
+        res.send(result);
+    });
 }
     finally{
 
