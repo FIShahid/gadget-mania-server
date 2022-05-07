@@ -23,6 +23,7 @@ async function run(){
 
         const productCollection = client.db('gadgetMania').collection('product');
        app.get('/inventory', async(req, res)=>{
+          
         const query = {};
         const cursor = productCollection.find(query);
         const products = await cursor.toArray();
@@ -73,6 +74,18 @@ async function run(){
         const result = await productCollection.deleteOne(query);
         res.send(result);
     });
+    //My Item
+ app.get ('/myItem', async (req,res)=>{
+    const email = req.query.email;
+    
+    //console.log(email)
+    const query = {email};
+    const cursor = productCollection.find(query);
+        const products = await cursor.toArray();
+        res.send(products);
+
+ })
+
 
 }
     finally{
